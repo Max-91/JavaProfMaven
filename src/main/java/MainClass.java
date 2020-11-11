@@ -1,3 +1,6 @@
+import java.util.ArrayList;
+import java.util.Arrays;
+
 /*  Задание:
 1. Написать метод, которому в качестве аргумента передается не пустой одномерный целочисленный массив.
  Метод должен вернуть новый массив, который получен путем вытаскивания из исходного массива элементов,
@@ -16,5 +19,37 @@
 [ 1 4 4 1 1 4 3 ] -> false
  */
 public class MainClass {
+    public static void main(String[] args) { // Для начальной проверки через консоль
+        int[] arr1 = {24, 545, 4, 6, 43, 21, 44};
+        System.out.println(Arrays.toString(func1(arr1)));
+        int[] arr2 = {1, 4, 4};
+        System.out.println(func2(arr2));
+    }
 
+    public static int[] func1(int[] inArr) {
+        for (int i = inArr.length - 1; i >= 0; i--) {
+            if (inArr[i] == 4) {
+                return Arrays.copyOfRange(inArr, i + 1, inArr.length);
+            }
+        }
+        throw new RuntimeException("В исходном массиве нет 4");
+    }
+
+    public static boolean func2(int[] inArr) {
+        boolean is1 = false;
+        boolean is4 = false;
+        boolean isOther = false;
+        for (int i = 0; i < inArr.length; i++) {
+            if (inArr[i] == 4) {
+                is4 = true;
+            }
+            if (inArr[i] == 1) {
+                is1 = true;
+            }
+            if (inArr[i] != 1 & inArr[i] != 4) {
+                isOther = true;
+            }
+        }
+        return is1 & is4 & !isOther;
+    }
 }
